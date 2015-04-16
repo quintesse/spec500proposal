@@ -1,28 +1,30 @@
-import backends { @backend:"jvm" myprint=myprintJvm }
-import backends { @backend:"js" myprint=myprintJs }
+native
+shared void testMethod() {}
 
-@backend:"jvm"
+native("jvm")
 shared void testMethod() {
-    myprint("This is a method in the Java backend");
+    myprintJvm("This is a method in the Java backend");
 }
 
-@backend:"js"
+native("js")
 shared void testMethod() {
-    myprint("This is a method the JavaScript backend");
+    myprintJs("This is a method the JavaScript backend");
 }
 
-@backend:"jvm"
-shared String testAttribute => "This is an attribute in the Java backend";
+//native
+//shared String testAttribute;
+//
+//native("jvm")
+//shared String testAttribute => "This is an attribute in the Java backend";
+//
+//native("js")
+//shared String testAttribute => "This is an attribute in the JavaScript backend";
 
-@backend:"js"
-shared String testAttribute => "This is an attribute in the JavaScript backend";
+native
+shared class TestClass() {}
 
-@backend:"jvm"
-shared class TestClass() {
-    myprint("This is a class in the Java backend");
-}
-
-@backend:"js"
-shared class TestClass() {
-    myprint("This is a class in the JavaScript backend");
+// TODO make sure the typechecker enforces this to be non-shared
+native("jvm")
+void testMethodNativeOnly() {
+    myprintJvm("This is a method in the Java backend");
 }

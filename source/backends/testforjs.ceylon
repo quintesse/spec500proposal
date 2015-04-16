@@ -1,9 +1,4 @@
-@backend:"js";
-
-import backends { myprint=myprintJs }
-import ceylon.collection { ArrayList }
-
-void fileTest() {
-    value x = ArrayList{"aap", "noot", "mies"};
-    myprint("This comes from testforjs.ceylon [``x``]");
+native("js")
+shared class TestClass() {
+    myprintJs("This is a class in the JavaScript backend");
 }
