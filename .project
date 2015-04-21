@@ -14,12 +14,8 @@
 			<name>com.redhat.ceylon.eclipse.ui.ceylonBuilder</name>
 			<arguments>
 				<dictionary>
-					<key>explodeModules</key>
+					<key>compileJs</key>
 					<value>true</value>
-				</dictionary>
-				<dictionary>
-					<key>systemRepo</key>
-					<value></value>
 				</dictionary>
 			</arguments>
 		</buildCommand>
