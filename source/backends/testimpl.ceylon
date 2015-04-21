@@ -22,17 +22,36 @@ shared void testMethod() {
 //    myprintJs("This is a shared method in the JavaScript backend");
 //}
 
-// EXPECTED ERROR: invalid backend name: 'foo', should be one of: jvm, js
+// EXPECTED ERROR: invalid native backend name: 'foo', should be one of: jvm, js
 //native("foo")
 //shared void testMethod() {
 //    myprintJs("This is a shared method in the JavaScript backend");
 //}
 
 native
-shared class TestClass();
+shared String testAttribute;
+
+native("jvm")
+shared String testAttribute => "This is a shared attribute in the Java backend";
+
+native("js")
+shared String testAttribute => "This is a shared attribute in the JavaScript backend";
+
+native("jvm")
+String testAttributeNativeOnly => "This is a private attribute in the Java backend";
+
+native("js")
+String testAttributeNativeOnly => "This is a private attribute in the JavaScript backend";
 
 native
-shared class TestClassWithInterface() satisfies TestInterface;
+shared class TestClass() {
+    native shared String test();
+}
+
+native
+shared class TestClassWithInterface() satisfies TestInterface {
+    native shared actual String test();
+}
 
 native("jvm")
 shared class TestClassWithInterface() satisfies TestInterface {
@@ -58,19 +77,22 @@ void testMethodNativeOnly() {
     myprintJs("This is a private method in the JavaScript backend");
 }
 
+// EXPECTED ERROR: native abstraction should be shared
+//native
+//void testMethodNotShared();
+//
+// EXPECTED ERROR: native implementation should be shared
+//native("jvm")
+//void testMethodNotShared() {}
+
+// EXPECTED ERROR: native implementation should have an abstraction or not be shared
+//native("jvm")
+//shared void testMethodNativeOnlyShared() {
+//}
+
 // EXPECTED ERROR: only toplevel classes and methods can be marked native
 //shared class TestContainer() {
 //    native("jvm")
 //    shared void test() {}
 //}
-
-// NOT SUPPORTED YET
-//native
-//shared String testAttribute;
-//
-//native("jvm")
-//shared String testAttribute => "This is an attribute in the Java backend";
-//
-//native("js")
-//shared String testAttribute => "This is an attribute in the JavaScript backend";
 

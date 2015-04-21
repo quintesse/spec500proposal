@@ -2,8 +2,10 @@
 shared void run() {
     testMethod();
     testMethodNativeOnly();
-    //print(testAttribute);
+    print(testAttribute);
+    print(testAttributeNativeOnly);
     print(TestClass().test());
+    print(TestClassWithInterface().test());
 }
 
 shared interface TestInterface {
