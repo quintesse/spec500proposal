@@ -1,3 +1,9 @@
+import ceylon.file { home }
+
+native("jvm")
+shared void testBackend() {
+    myprintJvm(home);
+}
 
 native("jvm")
 shared class TestClass() {

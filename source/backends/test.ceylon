@@ -1,21 +1,33 @@
 
-shared void run() {
+shared void runit() {
     testMethod();
+    testBackend();
     testMethodNativeOnly();
     print(testAttribute);
     print(testAttributeNativeOnly);
     print(TestClass().test());
     print(TestClassWithInterface().test());
+    testNative();
 }
 
 shared interface TestInterface {
     shared formal String test();
 }
 
-shared void myprintJvm(String str) {
-    print("JVM: " + str);
+shared void myprintJvm(Object str) {
+    print("JVM: " + str.string);
 }
 
-shared void myprintJs(String str) {
-    print("JS: " + str);
+shared void myprintJs(Object str) {
+    print("JS: " + str.string);
+}
+
+native("jvm") void testNative() {
+    myprintJvm(NativeCode().test());
+}
+
+native("js") void testNative() {
+    dynamic {
+        myprintJs(nativeCode());
+    }
 }

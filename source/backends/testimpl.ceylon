@@ -16,6 +16,9 @@ shared void testMethod() {
     myprintJs("This is a shared method in the JavaScript backend");
 }
 
+native
+shared void testBackend();
+
 // EXPECTED ERROR: duplicate native implementation: 'testMethod'
 //native("js")
 //shared void testMethod() {
