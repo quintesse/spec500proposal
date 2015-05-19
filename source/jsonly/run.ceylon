@@ -1,4 +1,4 @@
-"Run the module `jvmonly`."
+"Run the module `jsonly`."
 shared void run() {
     print("Using JavaScript");
 }
