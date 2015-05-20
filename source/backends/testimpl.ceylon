@@ -6,7 +6,7 @@ shared void testMethod();
 //native
 //shared void testMethod();
 
-native("jvm")
+native("java")
 shared void testMethod() {
     myprintJvm("This is a shared method in the Java backend");
 }
@@ -34,13 +34,13 @@ shared void testBackend();
 native
 shared String testAttribute;
 
-native("jvm")
+native("java")
 shared String testAttribute => "This is a shared attribute in the Java backend";
 
 native("js")
 shared String testAttribute => "This is a shared attribute in the JavaScript backend";
 
-native("jvm")
+native("java")
 String testAttributeNativeOnly => "This is a private attribute in the Java backend";
 
 native("js")
@@ -56,7 +56,7 @@ shared class TestClassWithInterface() satisfies TestInterface {
     native shared actual String test();
 }
 
-native("jvm")
+native("java")
 shared class TestClassWithInterface() satisfies TestInterface {
     myprintJvm("This is a class with interface in the Java backend");
     
@@ -70,7 +70,7 @@ shared class TestClassWithInterface() satisfies TestInterface {
     shared actual String test() => "JS";
 }
 
-native("jvm")
+native("java")
 void testMethodNativeOnly() {
     myprintJvm("This is a private method in the Java backend");
 }
@@ -85,17 +85,17 @@ void testMethodNativeOnly() {
 //void testMethodNotShared();
 //
 // EXPECTED ERROR: native implementation should be shared
-//native("jvm")
+//native("java")
 //void testMethodNotShared() {}
 
 // EXPECTED ERROR: native implementation should have an abstraction or not be shared
-//native("jvm")
+//native("java")
 //shared void testMethodNativeOnlyShared() {
 //}
 
 // EXPECTED ERROR: only toplevel classes and methods can be marked native
 //shared class TestContainer() {
-//    native("jvm")
+//    native("java")
 //    shared void test() {}
 //}
 

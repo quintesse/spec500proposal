@@ -1,11 +1,11 @@
 import ceylon.file { home }
 
-native("jvm")
+native("java")
 shared void testBackend() {
     myprintJvm(home);
 }
 
-native("jvm")
+native("java")
 shared class TestClass() {
     myprintJvm("This is a class in the Java backend");
     

@@ -22,7 +22,7 @@ shared void myprintJs(Object str) {
     print("JS: " + str.string);
 }
 
-native("jvm") void testNative() {
+native("java") void testNative() {
     myprintJvm(NativeCode().test());
 }
 
