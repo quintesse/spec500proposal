@@ -60,14 +60,14 @@ native("jvm")
 shared class TestClassWithInterface() satisfies TestInterface {
     myprintJvm("This is a class with interface in the Java backend");
     
-    shared actual String test() => "JVM";
+    native("jvm") shared actual String test() => "JVM";
 }
 
 native("js")
 shared class TestClassWithInterface() satisfies TestInterface {
     myprintJvm("This is a class with interface in the JavaScript backend");
     
-    shared actual String test() => "JS";
+    native("js") shared actual String test() => "JS";
 }
 
 native("jvm")
