@@ -1,3 +1,5 @@
+import com.redhat.ceylon.testjs { run }
+import ceylon.file { home }
 
 native
 shared void testMethod();
@@ -40,6 +42,9 @@ shared String testAttribute => "This is a shared attribute in the Java backend";
 native("js")
 shared String testAttribute => "This is a shared attribute in the JavaScript backend";
 
+native
+String testAttributeNativeOnly;
+
 native("jvm")
 String testAttributeNativeOnly => "This is a private attribute in the Java backend";
 
@@ -70,6 +75,9 @@ shared class TestClassWithInterface() satisfies TestInterface {
     native("js") shared actual String test() => "JS";
 }
 
+native
+void testMethodNativeOnly();
+
 native("jvm")
 void testMethodNativeOnly() {
     myprintJvm("This is a private method in the Java backend");
@@ -99,3 +107,28 @@ void testMethodNativeOnly() {
 //    shared void test() {}
 //}
 
+native("jvm")
+shared void testBackend() {
+    myprintJvm(home);
+}
+
+native("jvm")
+shared class TestClass() {
+    myprintJvm("This is a class in the Java backend");
+    
+    native("jvm") shared String test() => "JVM";
+}
+
+
+
+native("js")
+shared void testBackend() {
+    myprintJs(run);
+}
+
+native("js")
+shared class TestClass() {
+    myprintJs("This is a class in the JavaScript backend");
+    
+    native("js") shared String test() => "JS";
+}
