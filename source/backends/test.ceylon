@@ -8,6 +8,10 @@ shared void runit() {
     print(TestClass().test());
     print(TestClassWithInterface().test());
     testNative();
+    testMethodDefaultImpl1();
+    testMethodDefaultImpl2();
+    print(testAttributeDefaultImpl1);
+    print(testAttributeDefaultImpl2);
 }
 
 shared interface TestInterface {

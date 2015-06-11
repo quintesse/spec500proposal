@@ -132,3 +132,39 @@ shared class TestClass() {
     
     native("js") shared String test() => "JS";
 }
+
+native
+shared void testMethodDefaultImpl1() {
+    print("This method has a default implementation #1");
+}
+
+native("js")
+shared void testMethodDefaultImpl1() {
+    myprintJs("This method has a default implementation #1, but is overriden for JS");
+}
+
+native
+shared void testMethodDefaultImpl2() {
+    print("This method has a default implementation #2");
+}
+
+native("jvm")
+shared void testMethodDefaultImpl2() {
+    myprintJvm("This method has a default implementation #2, but is overriden for JVM");
+}
+
+native
+shared String testAttributeDefaultImpl1 =>
+    "This attribute has a default implementation #1";
+
+native("js")
+shared String testAttributeDefaultImpl1 =>
+    "This attribute has a default implementation #1, but is overriden for JS";
+
+native
+shared String testAttributeDefaultImpl2 =>
+    "This attribute has a default implementation #2";
+
+native("jvm")
+shared String testAttributeDefaultImpl2 =>
+    "This attribute has a default implementation #2, but is overriden for JVM";
