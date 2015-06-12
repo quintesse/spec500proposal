@@ -12,6 +12,7 @@ shared void runit() {
     testMethodDefaultImpl2();
     print(testAttributeDefaultImpl1);
     print(testAttributeDefaultImpl2);
+    NativeClassWithImpl(1, 2).test2();
 }
 
 shared interface TestInterface {

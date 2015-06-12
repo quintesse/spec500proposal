@@ -168,3 +168,39 @@ shared String testAttributeDefaultImpl2 =>
 native("jvm")
 shared String testAttributeDefaultImpl2 =>
     "This attribute has a default implementation #2, but is overriden for JVM";
+
+shared class NativeClassWithImplBase(Integer i) {
+    shared String base() => "Method in base class of native class ``i``";
+}
+
+native shared class NativeClassWithImpl(Integer x, Integer y)
+        extends NativeClassWithImplBase(x) {
+    native shared String meth() => "Method in native header class ``x`` ``y``";
+    native shared String attr => "Attribute in native header class ``x`` ``y``";
+    native shared void test2() {}
+    shared String nat() => "Non-native method in native header class ``x`` ``y``";
+}
+
+native("jvm") shared class NativeClassWithImpl(Integer x, Integer y)
+        extends NativeClassWithImplBase(x) {
+    String jvmimpl() => "Non-shared JVM method in native implementation class";
+    native("jvm") shared void test2() {
+        print(base());
+        print(meth());
+        print(attr);
+        print(nat());
+        print(jvmimpl());
+    }
+}
+
+native("js") shared class NativeClassWithImpl(Integer x, Integer y)
+        extends NativeClassWithImplBase(x) {
+    String jvmimpl() => "Non-shared JS method in native implementation class";
+    native("js") shared void test2() {
+        print(base());
+        print(meth());
+        print(attr);
+        print(nat());
+        print(jsimpl());
+    }
+}
