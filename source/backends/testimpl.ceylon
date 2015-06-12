@@ -195,7 +195,7 @@ native("jvm") shared class NativeClassWithImpl(Integer x, Integer y)
 
 native("js") shared class NativeClassWithImpl(Integer x, Integer y)
         extends NativeClassWithImplBase(x) {
-    String jvmimpl() => "Non-shared JS method in native implementation class";
+    String jsimpl() => "Non-shared JS method in native implementation class";
     native("js") shared void test2() {
         print(base());
         print(meth());
