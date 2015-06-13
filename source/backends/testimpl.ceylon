@@ -1,4 +1,4 @@
-import com.redhat.ceylon.testjs { run }
+import com.redhat.ceylon.testjs { testjsrun=run }
 import ceylon.file { home }
 
 native
@@ -123,7 +123,7 @@ shared class TestClass() {
 
 native("js")
 shared void testBackend() {
-    myprintJs(run);
+    myprintJs(testjsrun);
 }
 
 native("js")

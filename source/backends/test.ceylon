@@ -1,5 +1,5 @@
 
-shared void runit() {
+shared void run() {
     testMethod();
     testBackend();
     testMethodNativeOnly();
