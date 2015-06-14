@@ -204,3 +204,69 @@ native("js") shared class NativeClassWithImpl(Integer x, Integer y)
         print(jsimpl());
     }
 }
+
+void testNativeAttributeLocal() {
+    native("jvm") Integer nativeAttributeLocal1 = 1;
+    native("js") Integer nativeAttributeLocal1 = 2;
+    
+    
+    native("jvm") variable Integer nativeAttributeLocal2 = 1;
+    native("js") variable Integer nativeAttributeLocal2 = 2;
+    
+    
+    native("jvm") Integer nativeAttributeLocal3 => 1;
+    native("js") Integer nativeAttributeLocal3 => 2;
+    
+    value x = nativeAttributeLocal1;
+    value y = nativeAttributeLocal2;
+    nativeAttributeLocal2 = 3;
+    value z = nativeAttributeLocal3;
+}
+
+void testNativeMethodLocal() {
+    native("jvm") void nativeMethodLocal() {
+    }
+    native("js") void nativeMethodLocal() {
+    }
+    
+    nativeMethodLocal();
+}
+
+void testNativeClassLocal() {
+    native("jvm") class  NativeClassLocal() {
+    }
+    native("js") class NativeClassLocal() {
+    }
+    
+    value x = NativeClassLocal();
+}
+
+shared class NativeClassMembers() {
+    native shared void testShared(Integer i);
+    native("jvm") shared void testShared(Integer i) {
+    }
+    native("js") shared void testShared(Integer i) {
+    }
+    
+    native shared Integer attrShared;
+    native("jvm") shared Integer attrShared => 1;
+    native("js") shared Integer attrShared => 2;
+    
+    native("jvm") Integer testPrivate(Integer i) => i;
+    native("js") Integer testPrivate(Integer i) => i;
+    
+    native("jvm") Integer attrPrivate => 1;
+    native("js") Integer attrPrivate => 2;
+    
+    native("jvm") class  ClassPrivate(Integer i) {
+    }
+    
+    native("js") class ClassPrivate(Integer i) {
+    }
+    
+    shared void test() {
+        ClassPrivate(testPrivate(attrPrivate));
+        testShared(attrShared);
+    }
+}
+
